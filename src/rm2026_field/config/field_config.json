@@ -1,0 +1,64 @@
+{
+  "metadata": {
+    "name": "RMUL 2026 3v3",
+    "source": "RoboMaster 2026 university league rules V1.2.0 (2026-01-09)",
+    "units": "meters",
+    "coordinate_frame": "+X red-to-blue, +Y toward top of official drawing, +Z upward",
+    "note": "Values tagged simulation_only are placeholders and must be checked against future official drawings."
+  },
+  "sdf_version": "1.7",
+  "world": {
+    "name": "rmul_2026_3v3",
+    "gravity": [0.0, 0.0, -9.8],
+    "max_step_size": 0.001,
+    "real_time_update_rate": 1000.0
+  },
+  "field": {
+    "status": "official",
+    "size": [12.0, 8.0, 0.003],
+    "center": [0.0, 0.0, -0.0015]
+  },
+  "perimeter_wall": {
+    "status": "simulation_only",
+    "enabled": true,
+    "height": 0.30,
+    "thickness": 0.10
+  },
+  "zones": {
+    "supply": {
+      "status": "official_size_derived_position",
+      "size": [1.5, 2.0, 0.003],
+      "red_center": [-5.25, 3.0, 0.0015],
+      "derive_blue_by_center_symmetry": true
+    },
+    "control": {
+      "status": "official",
+      "size": [3.0, 3.0, 0.003],
+      "center": [0.0, 0.0, 0.0015]
+    }
+  },
+  "highlands": {
+    "status": "official_size_derived_position",
+    "main_size": [2.0, 5.0, 0.20],
+    "red_main_center": [-2.5, 1.5, 0.10],
+    "guard_status": "corrected_from_fig_3_6",
+    "guard_size": [0.15, 1.8, 0.20],
+    "red_guard_center": [-1.575, 0.8, 0.30],
+    "guard_longitudinal_placement": {
+      "status": "official",
+      "start_offset_from_red_near_end": 0.9,
+      "length": 1.8,
+      "end_offset_to_red_far_end": 2.3,
+      "red_world_y_range": [-0.1, 1.7]
+    },
+    "derive_blue_by_center_symmetry": true
+  },
+  "materials": {
+    "floor": [0.55, 0.55, 0.55, 1.0],
+    "highland": [0.45, 0.55, 0.65, 1.0],
+    "control_zone": [0.30, 0.70, 0.80, 0.45],
+    "red_supply": [0.55, 0.20, 0.20, 0.75],
+    "blue_supply": [0.20, 0.25, 0.65, 0.75],
+    "perimeter_wall": [0.05, 0.05, 0.05, 1.0]
+  }
+}

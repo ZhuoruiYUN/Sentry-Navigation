@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.7">
+  <model name="rmul_2026_3v3_field">
+    <static>true</static>
+    <link name="floor">
+      <pose>0 0 -0.0015 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>12 8 0.003</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>12 8 0.003</size>
+          </box>
+        </geometry>
+        <cast_shadows>true</cast_shadows>
+        <material>
+          <ambient>0.55 0.55 0.55 1</ambient>
+          <diffuse>0.55 0.55 0.55 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <link name="red_supply_zone">
+      <pose>-5.25 3 0.0015 0 0 0</pose>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>1.5 2 0.003</size>
+          </box>
+        </geometry>
+        <cast_shadows>false</cast_shadows>
+        <material>
+          <ambient>0.55 0.2 0.2 0.75</ambient>
+          <diffuse>0.55 0.2 0.2 0.75</diffuse>
+        </material>
+        <transparency>0.25</transparency>
+      </visual>
+    </link>
+    <link name="blue_supply_zone">
+      <pose>5.25 -3 0.0015 0 0 0</pose>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>1.5 2 0.003</size>
+          </box>
+        </geometry>
+        <cast_shadows>false</cast_shadows>
+        <material>
+          <ambient>0.2 0.25 0.65 0.75</ambient>
+          <diffuse>0.2 0.25 0.65 0.75</diffuse>
+        </material>
+        <transparency>0.25</transparency>
+      </visual>
+    </link>
+    <link name="control_zone">
+      <pose>0 0 0.0015 0 0 0</pose>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>3 3 0.003</size>
+          </box>
+        </geometry>
+        <cast_shadows>false</cast_shadows>
+        <material>
+          <ambient>0.3 0.7 0.8 0.45</ambient>
+          <diffuse>0.3 0.7 0.8 0.45</diffuse>
+        </material>
+        <transparency>0.55</transparency>
+      </visual>
+    </link>
+    <link name="red_highland_main">
+      <pose>-2.5 1.5 0.1 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>2 5 0.2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>2 5 0.2</size>
+          </box>
+        </geometry>
+        <cast_shadows>true</cast_shadows>
+        <material>
+          <ambient>0.45 0.55 0.65 1</ambient>
+          <diffuse>0.45 0.55 0.65 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <link name="blue_highland_main">
+      <pose>2.5 -1.5 0.1 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>2 5 0.2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>2 5 0.2</size>
+          </box>
+        </geometry>
+        <cast_shadows>true</cast_shadows>
+        <material>
+          <ambient>0.45 0.55 0.65 1</ambient>
+          <diffuse>0.45 0.55 0.65 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <link name="red_highland_guard">
+      <pose>-1.575 0.8 0.3 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.15 1.8 0.2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.15 1.8 0.2</size>
+          </box>
+        </geometry>
+        <cast_shadows>true</cast_shadows>
+        <material>
+          <ambient>0.45 0.55 0.65 1</ambient>
+          <diffuse>0.45 0.55 0.65 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <link name="blue_highland_guard">
+      <pose>1.575 -0.8 0.3 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.15 1.8 0.2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.15 1.8 0.2</size>
+          </box>
+        </geometry>
+        <cast_shadows>true</cast_shadows>
+        <material>
+          <ambient>0.45 0.55 0.65 1</ambient>
+          <diffuse>0.45 0.55 0.65 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <link name="north_wall">
+      <pose>0 4.05 0.15 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>12.2 0.1 0.3</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>12.2 0.1 0.3</size>
+          </box>
+        </geometry>
+        <cast_shadows>true</cast_shadows>
+        <material>
+          <ambient>0.05 0.05 0.05 1</ambient>
+          <diffuse>0.05 0.05 0.05 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <link name="south_wall">
+      <pose>0 -4.05 0.15 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>12.2 0.1 0.3</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>12.2 0.1 0.3</size>
+          </box>
+        </geometry>
+        <cast_shadows>true</cast_shadows>
+        <material>
+          <ambient>0.05 0.05 0.05 1</ambient>
+          <diffuse>0.05 0.05 0.05 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <link name="east_wall">
+      <pose>6.05 0 0.15 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.1 8 0.3</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.1 8 0.3</size>
+          </box>
+        </geometry>
+        <cast_shadows>true</cast_shadows>
+        <material>
+          <ambient>0.05 0.05 0.05 1</ambient>
+          <diffuse>0.05 0.05 0.05 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <link name="west_wall">
+      <pose>-6.05 0 0.15 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.1 8 0.3</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.1 8 0.3</size>
+          </box>
+        </geometry>
+        <cast_shadows>true</cast_shadows>
+        <material>
+          <ambient>0.05 0.05 0.05 1</ambient>
+          <diffuse>0.05 0.05 0.05 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
