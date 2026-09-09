@@ -1,0 +1,13 @@
+# ROS 2 / colcon generated directories
+build/
+install/
+log/
+
+# Local runtime and editor files
+*.bag
+*.db3
+.vscode/
+.idea/
+
+# Preserved upstream Git metadata for the vendored Livox driver
+src/livox_ros_driver2/.git-upstream/
