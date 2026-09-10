@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+ <xacro:macro name="sentry_wheel" params="prefix x y yaw">
+  <link name="wheel_${prefix}_link">
+   <inertial><origin rpy="1.570796 0 0"/><mass value="2.4"/><inertia ixx="0.00765" ixy="0" ixz="0" iyy="0.00765" iyz="0" izz="0.01442"/></inertial>
+   <visual><origin rpy="1.570796 0 ${yaw}"/><geometry><mesh filename="package://sentry_description/meshes/visual/wheel.stl" scale="0.001 0.001 0.001"/></geometry></visual>
+   <!-- Wheel collision is omitted while using the kinematic planar simulator. -->
+  </link>
+  <joint name="wheel_${prefix}_joint" type="continuous"><parent link="base_link"/><child link="wheel_${prefix}_link"/>
+   <origin xyz="${x} ${y} 0"/><axis xyz="${-sin(yaw)} ${cos(yaw)} 0"/><dynamics damping="0.2" friction="0.1"/>
+  </joint>
+ </xacro:macro>
+</robot>

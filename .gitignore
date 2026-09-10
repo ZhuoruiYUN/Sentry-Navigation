@@ -6,6 +6,8 @@ log/
 # Local runtime and editor files
 *.bag
 *.db3
+__pycache__/
+*.py[cod]
 .vscode/
 .idea/
 

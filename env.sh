@@ -2,6 +2,8 @@
 
 # ROS 2 Humble + Livox MID360 user-local development environment.
 export PATH="/usr/bin:/bin:/usr/local/bin:$PATH"
+# Keep this project isolated from stale ROS 2 processes in the default domain.
+export ROS_DOMAIN_ID=42
 if [ -n "${ZSH_VERSION:-}" ]; then
   source /opt/ros/humble/setup.zsh
   if [ -f "$HOME/Desktop/workspace/sentry-navigation/install/setup.zsh" ]; then

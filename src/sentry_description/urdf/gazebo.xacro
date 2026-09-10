@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+ <xacro:macro name="sentry_gazebo" params="enabled"><xacro:if value="${enabled}">
+  <gazebo><plugin name="sentry_planar_move" filename="libgazebo_ros_planar_move.so">
+   <ros>
+    <namespace>/</namespace>
+    <!-- gazebo_ros_planar_move listens on cmd_vel; remap its input through the lidar guard. -->
+    <remapping>cmd_vel:=cmd_vel_safe</remapping>
+   </ros>
+   <odometry_topic>odom</odometry_topic>
+   <odometry_frame>odom</odometry_frame><robot_base_frame>base_link</robot_base_frame><odometry_rate>50.0</odometry_rate>
+  </plugin></gazebo>
+  <!-- This model uses kinematic planar motion rather than rigid-body dynamics. -->
+  <gazebo reference="base_link"><gravity>false</gravity></gazebo>
+  <gazebo reference="gimbal_yaw_link"><gravity>false</gravity></gazebo>
+  <gazebo reference="wheel_fl_link"><gravity>false</gravity></gazebo>
+  <gazebo reference="wheel_fr_link"><gravity>false</gravity></gazebo>
+  <gazebo reference="wheel_rl_link"><gravity>false</gravity></gazebo>
+  <gazebo reference="wheel_rr_link"><gravity>false</gravity></gazebo>
+  <ros2_control name="GazeboSystem" type="system">
+   <hardware><plugin>gazebo_ros2_control/GazeboSystem</plugin></hardware>
+   <joint name="gimbal_yaw_joint">
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+   </joint>
+  </ros2_control>
+  <gazebo>
+   <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+    <parameters>$(find sentry_description)/config/controllers.yaml</parameters>
+   </plugin>
+  </gazebo>
+  <gazebo reference="lidar_link"><preserveFixedJoint>true</preserveFixedJoint><material>Gazebo/Orange</material></gazebo>
+  <gazebo reference="livox_frame"><preserveFixedJoint>true</preserveFixedJoint></gazebo>
+  <gazebo reference="livox_frame"><sensor name="mid360_sim" type="gpu_ray"><always_on>true</always_on><update_rate>10</update_rate>
+   <ray><scan><horizontal><samples>1024</samples><resolution>1</resolution><min_angle>-3.141593</min_angle><max_angle>3.141593</max_angle></horizontal>
+   <vertical><samples>32</samples><resolution>1</resolution><min_angle>-0.122173</min_angle><max_angle>0.907571</max_angle></vertical></scan>
+   <range><min>0.10</min><max>40.0</max><resolution>0.02</resolution></range></ray>
+   <plugin name="mid360_pointcloud" filename="libgazebo_ros_ray_sensor.so"><ros><remapping>~/out:=mid360/points</remapping></ros><output_type>sensor_msgs/PointCloud2</output_type><frame_name>livox_frame</frame_name></plugin>
+  </sensor></gazebo>
+ </xacro:if></xacro:macro>
+</robot>

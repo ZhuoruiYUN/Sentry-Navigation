@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+ <xacro:macro name="sentry_gimbal" params="mount_z mount_yaw">
+  <link name="gimbal_yaw_link">
+   <inertial><origin xyz="0 0 0.13"/><mass value="12.0"/><inertia ixx="0.105" ixy="0" ixz="0" iyy="0.105" iyz="0" izz="0.125"/></inertial>
+   <!-- Supplied yaw STEP includes rigid shooter and MID-360. -->
+   <visual><origin xyz="0 0 -0.025" rpy="1.570796 0 -1.570796"/><geometry><mesh filename="package://sentry_description/meshes/visual/gimbal_yaw.stl" scale="0.001 0.001 0.001"/></geometry></visual>
+   <!-- No coarse collision volume because it would surround the simulated MID360. -->
+  </link>
+  <!-- CAD mesh bounds put its lowest point 25 mm below its local origin.
+       The mount intentionally enters the chassis top plate by about 23 mm,
+       matching the supplied assembly image rather than floating above it. -->
+  <joint name="gimbal_yaw_joint" type="continuous"><parent link="base_link"/><child link="gimbal_yaw_link"/><origin xyz="0 0 ${mount_z}" rpy="0 0 ${mount_yaw}"/><axis xyz="0 0 1"/><dynamics damping="0.4" friction="0.1"/></joint>
+ </xacro:macro>
+</robot>

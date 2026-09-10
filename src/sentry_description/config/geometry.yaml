@@ -1,0 +1,16 @@
+# First-pass inferred values, SI units.
+wheel_radius: 0.0775
+wheel_width_collision: 0.050
+wheel_centers:
+  fl: [0.215, 0.205, 0.0]
+  fr: [0.215, -0.205, 0.0]
+  rl: [-0.215, 0.205, 0.0]
+  rr: [-0.215, -0.205, 0.0]
+# CAD mesh calibration: X-drive wheel-axis yaw, ordered fl/fr/rl/rr.
+wheel_module_yaw: [2.356194, 0.785398, -2.356194, -0.785398]
+# CAD mesh calibration: yaw is +90 degrees; the mount enters the top plate.
+gimbal_yaw_origin: [0.0, 0.0, 0.18]
+gimbal_yaw_zero_radians: 1.570796
+lidar_origin_in_gimbal_yaw: [-0.145, -0.010, 0.110]
+lidar_pitch_radians: -0.610865
+cad_to_ros_rpy: [1.57079632679, 0.0, -1.57079632679]

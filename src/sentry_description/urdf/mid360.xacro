@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+ <xacro:macro name="sentry_mid360" params="mount_x mount_y mount_z mount_pitch">
+  <link name="lidar_link">
+   <visual>
+    <origin rpy="1.570796 0 -1.570796"/>
+    <geometry><mesh filename="package://sentry_description/meshes/visual/mid360.stl" scale="0.001 0.001 0.001"/></geometry>
+    <material name="mid360_orange"><color rgba="1.0 0.20 0.02 1.0"/></material>
+   </visual>
+  </link>
+  <joint name="lidar_joint" type="fixed"><parent link="gimbal_yaw_link"/><child link="lidar_link"/><origin xyz="${mount_x} ${mount_y} ${mount_z}" rpy="0 ${mount_pitch} 0"/></joint>
+  <link name="livox_frame"/><joint name="livox_frame_joint" type="fixed"><parent link="lidar_link"/><child link="livox_frame"/><origin xyz="0 0 0"/></joint>
+ </xacro:macro>
+</robot>

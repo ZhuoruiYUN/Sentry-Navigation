@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="sentry">
+ <xacro:arg name="use_gazebo" default="false"/>
+ <xacro:include filename="$(find sentry_description)/urdf/chassis.xacro"/>
+ <xacro:include filename="$(find sentry_description)/urdf/wheels.xacro"/>
+ <xacro:include filename="$(find sentry_description)/urdf/gimbal.xacro"/>
+ <xacro:include filename="$(find sentry_description)/urdf/mid360.xacro"/>
+ <xacro:include filename="$(find sentry_description)/urdf/gazebo.xacro"/>
+ <!-- APPROXIMATE first-pass geometry; calibrate these values in RViz. -->
+ <xacro:property name="wheel_radius" value="0.0775"/>
+ <xacro:property name="wheel_width" value="0.050"/>
+<!-- Equal X/Y mounting offsets yield a 450 mm wheel-centre diagonal. -->
+<xacro:property name="wheel_x" value="0.1331"/><xacro:property name="wheel_y" value="0.1331"/>
+ <link name="base_footprint"/>
+ <joint name="base_footprint_joint" type="fixed"><parent link="base_footprint"/><child link="base_link"/>
+  <origin xyz="0 0 ${wheel_radius}"/></joint>
+ <xacro:sentry_chassis/>
+<!--
+  The wheel STL includes its suspension arm.  From the CAD top view, its four
+  mounting corners use the CAD-specific orientations below.  The left pair is
+  flipped 180 degrees relative to the initial visual calibration.
+-->
+<xacro:sentry_wheel prefix="fl" x="${wheel_x}" y="${wheel_y}" yaw="2.356194"/>
+<xacro:sentry_wheel prefix="fr" x="${wheel_x}" y="${-wheel_y}" yaw="0.785398"/>
+<xacro:sentry_wheel prefix="rl" x="${-wheel_x}" y="${wheel_y}" yaw="-2.356194"/>
+<xacro:sentry_wheel prefix="rr" x="${-wheel_x}" y="${-wheel_y}" yaw="-0.785398"/>
+ <xacro:sentry_gimbal mount_z="0.177" mount_yaw="1.570796"/>
+ <xacro:sentry_mid360 mount_x="-0.145" mount_y="-0.01" mount_z="0.110" mount_pitch="-0.610865"/>
+ <xacro:sentry_gazebo enabled="$(arg use_gazebo)"/>
+</robot>

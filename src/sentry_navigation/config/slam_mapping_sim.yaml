@@ -1,0 +1,26 @@
+slam_toolbox:
+  ros__parameters:
+    use_sim_time: true
+    odom_frame: odom
+    map_frame: map
+    base_frame: base_link
+    scan_topic: /scan
+    mode: mapping
+
+    # A 2.5 cm grid keeps the simulated field edges visibly sharper than the
+    # previous 5 cm map.
+    resolution: 0.025
+    max_laser_range: 20.0
+    minimum_time_interval: 0.1
+    transform_publish_period: 0.05
+    map_update_interval: 1.0
+    minimum_travel_distance: 0.03
+    minimum_travel_heading: 0.03
+
+    # gazebo_ros_planar_move publishes simulation ground-truth odometry.
+    # Scan matching and loop closure can bend that exact rectangular frame and
+    # produced the duplicated walls seen in the previous map.
+    use_scan_matching: false
+    use_scan_barycenter: false
+    do_loop_closing: false
+    throttle_scans: 1
