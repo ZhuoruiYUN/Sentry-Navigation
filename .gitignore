@@ -10,6 +10,7 @@ __pycache__/
 *.py[cod]
 .vscode/
 .idea/
+HANDOFF.md
 
 # Preserved upstream Git metadata for the vendored Livox driver
 src/livox_ros_driver2/.git-upstream/
