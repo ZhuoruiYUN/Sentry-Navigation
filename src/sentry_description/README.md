@@ -1,6 +1,7 @@
 # Sentry Robot Description
 
-![Sentry robot in the RMUL 3v3 Gazebo simulation](assets/sentry.png)
+<img src="assets/sentry.png" alt="Sentry robot in the RMUL 3v3 Gazebo simulation" width="60%">
+
 
 ROS 2 Humble description and Gazebo Classic simulation package for the RoboMaster sentry robot.
 
