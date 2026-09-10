@@ -1,6 +1,6 @@
 # RMUL 2026 3v3 Gazebo Field
 
-![RMUL 2026 3v3 Gazebo field](assets/rmul_2026_3v3_venue.png)
+<img src="assets/rmul_2026_3v3_venue.png" alt="RMUL 2026 3v3 Gazebo field" width="60%">
 
 A configurable Gazebo Classic field package for RMUL 2026 3v3 navigation and simulation work. The layout is generated from the field specification and keeps dimensions and object placement in one editable configuration file.
 
