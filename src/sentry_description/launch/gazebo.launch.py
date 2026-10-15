@@ -1,5 +1,6 @@
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, TimerAction
+from launch.conditions import LaunchConfigurationEquals
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
@@ -8,7 +9,8 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
     share = FindPackageShare("sentry_description")
-    field = FindPackageShare("rm2026_field")
+    field_2026 = FindPackageShare("rm2026_field")
+    field_2027 = FindPackageShare("rm2027_field")
     model = PathJoinSubstitution([share, "urdf", "sentry.urdf.xacro"])
     description = {
         "robot_description": ParameterValue(
@@ -21,15 +23,24 @@ def generate_launch_description():
     }
     return LaunchDescription([
         DeclareLaunchArgument("gui", default_value="true"),
+        DeclareLaunchArgument("field_year", default_value="2026", choices=["2026", "2027"]),
         DeclareLaunchArgument("solidworks", default_value="true"),
         DeclareLaunchArgument("x", default_value="-4.8"),
         DeclareLaunchArgument("y", default_value="2.8"),
         DeclareLaunchArgument("z", default_value="0.01"),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
-                PathJoinSubstitution([field, "launch", "rmul_2026_3v3.launch.py"])
+                PathJoinSubstitution([field_2026, "launch", "rmul_2026_3v3.launch.py"])
             ),
             launch_arguments={"gui": LaunchConfiguration("gui")}.items(),
+            condition=LaunchConfigurationEquals("field_year", "2026"),
+        ),
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                PathJoinSubstitution([field_2027, "launch", "rmul_2027_3v3.launch.py"])
+            ),
+            launch_arguments={"gui": LaunchConfiguration("gui")}.items(),
+            condition=LaunchConfigurationEquals("field_year", "2027"),
         ),
         Node(package="robot_state_publisher", executable="robot_state_publisher", parameters=[description]),
         Node(

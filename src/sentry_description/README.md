@@ -24,6 +24,11 @@ and `/cmd_vel` safety guard. To view the earlier model, add `solidworks:=false`
 to the launch command. The SolidWorks wheel joints are currently free-spinning
 visual links; the planar motion plugin moves the robot body.
 
+For the separate RMUL 2027 3v3 field with workbenches and tunnel passages,
+start Gazebo with `field_year:=2027`. The default is the 2026 field. Build
+`rm2027_field` before selecting the new field. The existing 2026 occupancy map
+does not match the new field; create a fresh map before using Nav2 there.
+
 To drive the robot through the existing `/cmd_vel` safety guard, start the
 mapping launch in a second terminal. It converts `/mid360/points` to `/scan`;
 the guard blocks motion until a fresh scan is available.

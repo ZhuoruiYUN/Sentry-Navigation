@@ -1,0 +1,78 @@
+{
+  "metadata": {
+    "name": "RMUL 2027 3v3",
+    "source": "RoboMaster 2027 University League Rules V1.0.0 (2026-10-15), section 3.2, figures 3-1 to 3-10",
+    "units": "meters",
+    "coordinate_frame": "+X red-to-blue, +Y toward top of official drawing, +Z upward",
+    "note": "The 50 mm workbench chamfers and 250/270 mm tunnel end heights follow figures 3-6 and 3-8. The wall-side barrier depth and highland landing are simulation approximations."
+  },
+  "sdf_version": "1.7",
+  "model": {"name": "rmul_2027_3v3_field"},
+  "world": {
+    "name": "rmul_2027_3v3",
+    "gravity": [0.0, 0.0, -9.8],
+    "max_step_size": 0.001,
+    "real_time_update_rate": 1000.0
+  },
+  "field": {"size": [12.0, 8.0, 0.003], "center": [0.0, 0.0, -0.0015]},
+  "perimeter_wall": {
+    "status": "simulation_only",
+    "enabled": true,
+    "height": 0.30,
+    "thickness": 0.10
+  },
+  "zones": {
+    "supply": {
+      "status": "official_fig_3_6",
+      "size": [2.5, 2.0, 0.003],
+      "red_center": [-4.75, 3.0, 0.0015]
+    },
+    "central_control": {
+      "status": "official_fig_3_10",
+      "size": [3.0, 3.0, 0.003],
+      "center": [0.0, 0.0, 0.0015]
+    },
+    "highland_control": {
+      "status": "official_size_derived_position",
+      "size": [1.2, 1.2, 0.003],
+      "red_center": [-2.5, 0.8, 0.2015]
+    }
+  },
+  "workbench": {
+    "status": "official_size_derived_position_fig_3_6",
+    "size": [0.75, 0.45, 0.40],
+    "chamfer": 0.05,
+    "red_center": [-5.625, 3.775, 0.20]
+  },
+  "highlands": {
+    "status": "official_fig_3_8",
+    "main_size": [2.0, 4.06, 0.20],
+    "red_main_center": [-2.5, 1.17, 0.10],
+    "guard_status": "derived_from_fig_3_8",
+    "guard_size": [0.15, 1.8, 0.20],
+    "red_guard_center": [-1.575, 0.8, 0.30]
+  },
+  "tunnel": {
+    "status": "official_plate_dimensions_fig_3_8",
+    "gap_to_perimeter": 0.80,
+    "red_center_xy": [-2.5, 3.6],
+    "metal_plate_size": [0.35, 0.80, 0.02],
+    "wall_barrier_size": [2.0, 0.15, 0.25],
+    "highland_bridge_top_z": 0.27,
+    "landing_depth": 0.15,
+    "chamfer": 0.05,
+    "passage_width_each_side": 0.825,
+    "marker_height": 0.003
+  },
+  "materials": {
+    "floor": [0.55, 0.55, 0.55, 1.0],
+    "highland": [0.48, 0.55, 0.61, 1.0],
+    "central_control": [0.30, 0.70, 0.80, 0.45],
+    "highland_control": [0.25, 0.75, 0.82, 0.55],
+    "red_supply": [0.55, 0.20, 0.20, 0.75],
+    "blue_supply": [0.20, 0.25, 0.65, 0.75],
+    "workbench": [0.62, 0.69, 0.73, 1.0],
+    "metal_plate": [0.32, 0.39, 0.43, 1.0],
+    "perimeter_wall": [0.05, 0.05, 0.05, 1.0]
+  }
+}

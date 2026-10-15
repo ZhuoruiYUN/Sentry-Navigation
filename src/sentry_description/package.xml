@@ -10,6 +10,7 @@
  <exec_depend>control_msgs</exec_depend><exec_depend>trajectory_msgs</exec_depend>
  <exec_depend>rclpy</exec_depend><exec_depend>geometry_msgs</exec_depend><exec_depend>sensor_msgs</exec_depend>
  <exec_depend>rm2026_field</exec_depend>
+ <exec_depend>rm2027_field</exec_depend>
  <exec_depend>sentry_solidworks_preview</exec_depend>
  <export>
   <build_type>ament_cmake</build_type>
