@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>sentry_solidworks_preview</name>
+  <version>0.1.0</version>
+  <description>ROS 2 preview of the sentry.rar SolidWorks export.</description>
+  <maintainer email="maintainer@example.com">Sentry Team</maintainer>
+  <license>BSD-3-Clause</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>gazebo_ros</exec_depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+    <!-- Let Gazebo resolve package://sentry_solidworks_preview/meshes/... . -->
+    <gazebo_ros gazebo_model_path="${prefix}/.."/>
+  </export>
+</package>

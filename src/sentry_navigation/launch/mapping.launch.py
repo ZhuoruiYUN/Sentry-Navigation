@@ -2,6 +2,7 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
+from launch_ros.parameter_descriptions import ParameterValue
 from ament_index_python.packages import get_package_share_directory
 import os
 
@@ -13,7 +14,7 @@ def scan_converter():
         name="mid360_to_scan",
         output="screen",
         parameters=[{
-            "use_sim_time": True,
+            "use_sim_time": ParameterValue(LaunchConfiguration("use_sim_time"), value_type=bool),
             "target_frame": "base_link",
             "transform_tolerance": 0.1,
             "min_height": 0.10,
@@ -28,7 +29,7 @@ def scan_converter():
             "use_inf": True,
             "inf_epsilon": 1.0,
         }],
-        remappings=[("cloud_in", "/mid360/points"), ("scan", "/scan")],
+        remappings=[("cloud_in", LaunchConfiguration("cloud_topic")), ("scan", "/scan")],
     )
 
 
@@ -40,6 +41,8 @@ def generate_launch_description():
     )
     params = LaunchConfiguration("params_file")
     return LaunchDescription([
+        DeclareLaunchArgument("use_sim_time", default_value="true"),
+        DeclareLaunchArgument("cloud_topic", default_value="/mid360/points"),
         DeclareLaunchArgument(
             "params_file",
             default_value=default_params,

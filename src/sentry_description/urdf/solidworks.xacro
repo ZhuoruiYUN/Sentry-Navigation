@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Geometry and joint origins from the sentry.rar SolidWorks export. -->
+  <xacro:macro name="solidworks_chassis">
+    <link name="base_link">
+      <inertial>
+        <origin xyz="0 0 0.055"/>
+        <mass value="35.0"/>
+        <xacro:box_inertia m="35.0" x="0.56" y="0.60" z="0.22"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://sentry_solidworks_preview/meshes/base.STL"/>
+        </geometry>
+      </visual>
+      <!-- The planar movement plugin is kinematic. A CAD collision mesh
+           here would make the onboard lidar see the robot itself. -->
+    </link>
+    <link name="imu_link"/>
+    <joint name="imu_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="imu_link"/>
+      <origin xyz="0 0 0.08"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="solidworks_armor" params="index x y z yaw">
+    <link name="armor_${index}_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://sentry_solidworks_preview/meshes/armor-${index}.STL"/>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="armor_${index}_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="armor_${index}_link"/>
+      <origin xyz="${x} ${y} ${z}" rpy="0 -0.2618 ${yaw}"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="solidworks_wheel" params="prefix index x y yaw">
+    <link name="wheel_${prefix}_link">
+      <inertial>
+        <mass value="0.27879"/>
+        <inertia ixx="0.00020" ixy="0" ixz="0"
+                 iyy="0.00012" iyz="0" izz="0.00012"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://sentry_solidworks_preview/meshes/wheel-${index}.STL"/>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="wheel_${prefix}_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="wheel_${prefix}_link"/>
+      <origin xyz="${x} ${y} -0.0037427" rpy="0 0 ${yaw}"/>
+      <axis xyz="-1 0 0"/>
+      <dynamics damping="0.2" friction="0.1"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="solidworks_gimbal">
+    <link name="gimbal_yaw_link">
+      <inertial>
+        <origin xyz="0 0 0.13"/>
+        <mass value="12.0"/>
+        <inertia ixx="0.105" ixy="0" ixz="0"
+                 iyy="0.105" iyz="0" izz="0.125"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://sentry_solidworks_preview/meshes/yaw.STL"/>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="gimbal_yaw_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="gimbal_yaw_link"/>
+      <origin xyz="0 0 0.1595"/>
+      <!-- Keep the ROS controller's positive yaw convention. -->
+      <axis xyz="0 0 1"/>
+      <dynamics damping="0.4" friction="0.1"/>
+    </joint>
+  </xacro:macro>
+</robot>

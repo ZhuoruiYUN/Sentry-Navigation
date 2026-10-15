@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="sentry-urdf">
+  <link name="base">
+    <inertial>
+      <origin xyz="0.0127292943415635 0.015513346499258 0.0653892864048969" rpy="0 0 0" />
+      <mass value="8.28646893365413" />
+      <inertia ixx="0.0122564574227048" ixy="5.06966976588293E-06" ixz="6.29473785568394E-06" iyy="0.017188549945823" iyz="-3.54427905850077E-06" izz="0.024852924029648" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_urdf_preview/meshes/base.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+  </link>
+  <link name="wheel-1">
+    <inertial>
+      <origin xyz="3.5472E-14 7.3553E-07 -1.3352E-06" rpy="0 0 0" />
+      <mass value="0.46449" />
+      <inertia ixx="0.00033786" ixy="-1.3553E-20" ixz="-5.8695E-21" iyy="0.00017443" iyz="3.516E-09" izz="0.00017443" />
+    </inertial>
+  </link>
+  <joint name="wheel-1" type="revolute">
+    <origin xyz="0.16209 0.16209 -0.0037427" rpy="0 0 0.7854" />
+    <parent link="base" />
+    <child link="wheel-1" />
+    <axis xyz="-1 0 0" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+  <link name="wheel-2">
+    <inertial>
+      <origin xyz="3.5166E-14 7.3553E-07 -1.3352E-06" rpy="0 0 0" />
+      <mass value="0.46449" />
+      <inertia ixx="0.00033786" ixy="-1.3553E-20" ixz="-6.5294E-21" iyy="0.00017443" iyz="3.516E-09" izz="0.00017443" />
+    </inertial>
+  </link>
+  <joint name="wheel-2" type="revolute">
+    <origin xyz="-0.16209 0.16209 -0.0037427" rpy="0 0 2.3562" />
+    <parent link="base" />
+    <child link="wheel-2" />
+    <axis xyz="-1 0 0" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+  <link name="wheel-3">
+    <inertial>
+      <origin xyz="3.5416E-14 7.3553E-07 -1.3352E-06" rpy="0 0 0" />
+      <mass value="0.46449" />
+      <inertia ixx="0.00033786" ixy="-2.0329E-20" ixz="-5.3085E-21" iyy="0.00017443" iyz="3.516E-09" izz="0.00017443" />
+    </inertial>
+  </link>
+  <joint name="wheel-3" type="revolute">
+    <origin xyz="-0.16209 -0.16209 -0.0037427" rpy="0 0 -2.3562" />
+    <parent link="base" />
+    <child link="wheel-3" />
+    <axis xyz="-1 0 0" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+  <link name="wheel-4">
+    <inertial>
+      <origin xyz="3.5555E-14 7.3553E-07 -1.3352E-06" rpy="0 0 0" />
+      <mass value="0.46449" />
+      <inertia ixx="0.00033786" ixy="0" ixz="-1.7961E-21" iyy="0.00017443" iyz="3.516E-09" izz="0.00017443" />
+    </inertial>
+  </link>
+  <joint name="wheel-4" type="revolute">
+    <origin xyz="0.16209 -0.16209 -0.0037427" rpy="0 0 -0.7854" />
+    <parent link="base" />
+    <child link="wheel-4" />
+    <axis xyz="-1 0 0" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+  <link name="yaw">
+    <inertial>
+      <origin xyz="0.0056886 -0.030474 0.12256" rpy="0 0 0" />
+      <mass value="2.6592" />
+      <inertia ixx="0.0032342" ixy="-4.0576E-06" ixz="-1.5882E-05" iyy="0.0018652" iyz="-5.3478E-05" izz="0.0024437" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_urdf_preview/meshes/yaw.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="yaw" type="revolute">
+    <origin xyz="0 0 0.1595" rpy="0 0 0" />
+    <parent link="base" />
+    <child link="yaw" />
+    <axis xyz="0 0 -1" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+  <link name="armor-1">
+    <inertial>
+      <origin xyz="-0.0083693 8.4227E-09 0.00081288" rpy="0 0 0" />
+      <mass value="0.096294" />
+      <inertia ixx="0.00027639" ixy="5.4094E-12" ixz="-2.6918E-07" iyy="0.00013222" iyz="4.6908E-10" izz="0.00014509" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_urdf_preview/meshes/armor-1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="armor-1" type="fixed">
+    <origin xyz="0.23985 0 0.063281" rpy="0 -0.2618 0" />
+    <parent link="base" />
+    <child link="armor-1" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="armor-2">
+    <inertial>
+      <origin xyz="-0.0083693 6.893E-09 0.00081288" rpy="0 0 0" />
+      <mass value="0.096294" />
+      <inertia ixx="0.00027639" ixy="5.0852E-12" ixz="-2.6918E-07" iyy="0.00013222" iyz="4.7415E-10" izz="0.00014509" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_urdf_preview/meshes/armor-2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="armor-2" type="fixed">
+    <origin xyz="0 0.23985 0.097281" rpy="0 -0.2618 1.5708" />
+    <parent link="base" />
+    <child link="armor-2" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="armor-3">
+    <inertial>
+      <origin xyz="-0.0083693 6.9313E-09 0.00081288" rpy="0 0 0" />
+      <mass value="0.096294" />
+      <inertia ixx="0.00027639" ixy="5.0706E-12" ixz="-2.6918E-07" iyy="0.00013222" iyz="4.7406E-10" izz="0.00014509" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_urdf_preview/meshes/armor-3.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="armor-3" type="fixed">
+    <origin xyz="-0.23985 0 0.063281" rpy="0 -0.2618 3.1416" />
+    <parent link="base" />
+    <child link="armor-3" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="armor-4">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0" />
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_urdf_preview/meshes/armor-4.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="armor-4" type="fixed">
+    <origin xyz="0 -0.23985 0.097281" rpy="0 -0.2618 -1.5708" />
+    <parent link="base" />
+    <child link="armor-4" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <!-- Visual inspection model: it intentionally has no collision or dynamics. -->
+  <gazebo>
+    <static>true</static>
+  </gazebo>
+</robot>

@@ -18,6 +18,30 @@ ros2 launch sentry_description gazebo.launch.py
 
 This launch starts the RMUL 3v3 field and spawns the robot. The simulation uses planar kinematic motion for navigation development; it is not intended to validate chassis dynamics or motor control.
 
+The default visual model is the complete SolidWorks export from `sentry.rar`.
+It retains the simulator's `base_link`, gimbal controller, MID360 TF and sensor,
+and `/cmd_vel` safety guard. To view the earlier model, add `solidworks:=false`
+to the launch command. The SolidWorks wheel joints are currently free-spinning
+visual links; the planar motion plugin moves the robot body.
+
+To drive the robot through the existing `/cmd_vel` safety guard, start the
+mapping launch in a second terminal. It converts `/mid360/points` to `/scan`;
+the guard blocks motion until a fresh scan is available.
+
+```bash
+source ~/Desktop/workspace/sentry-navigation/env.sh
+ros2 launch sentry_navigation mapping.launch.py
+```
+
+Then send a short forward command from a third terminal:
+
+```bash
+source ~/Desktop/workspace/sentry-navigation/env.sh
+ros2 topic pub -r 10 -t 25 /cmd_vel geometry_msgs/msg/Twist '{linear: {x: 0.12}}'
+```
+
+The guard stops the robot when the command ends or an obstacle is too close.
+
 ## Package Layout
 
 - `urdf/sentry.urdf.xacro`: robot links, joints, sensors, and Gazebo plugins.

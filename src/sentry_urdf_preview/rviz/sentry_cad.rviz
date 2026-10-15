@@ -1,0 +1,36 @@
+Panels:
+  - Class: rviz_common/Displays
+Visualization Manager:
+  Class: ""
+  Global Options:
+    Fixed Frame: base
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Enabled: true
+    - Class: rviz_default_plugins/RobotModel
+      Name: RobotModel
+      Enabled: true
+      Description Source: Topic
+      Description Topic:
+        Value: /robot_description
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: false
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 1.4
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 0.09
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 0.65
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 0.8
+Window Geometry:
+  Height: 900
+  Width: 1400

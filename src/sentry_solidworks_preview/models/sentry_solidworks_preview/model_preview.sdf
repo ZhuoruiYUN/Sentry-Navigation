@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="sentry_solidworks_preview">
+    <static>true</static>
+    <link name="base">
+      <visual name="base">
+        <geometry><mesh><uri>model://sentry_solidworks_preview/meshes/base.STL</uri></mesh></geometry>
+        <material><diffuse>0.90 0.92 0.93 1</diffuse><specular>0.15 0.15 0.15 1</specular></material>
+      </visual>
+      <visual name="armor_front">
+        <pose>0.23985 0 0.063281 0 -0.2618 0</pose>
+        <geometry><mesh><uri>model://sentry_solidworks_preview/meshes/armor-1.STL</uri></mesh></geometry>
+        <material><diffuse>0.79 0.82 0.93 1</diffuse></material>
+      </visual>
+      <visual name="armor_left">
+        <pose>0 0.23985 0.097281 0 -0.2618 1.5708</pose>
+        <geometry><mesh><uri>model://sentry_solidworks_preview/meshes/armor-2.STL</uri></mesh></geometry>
+        <material><diffuse>0.79 0.82 0.93 1</diffuse></material>
+      </visual>
+      <visual name="armor_rear">
+        <pose>-0.23985 0 0.063281 0 -0.2618 3.1416</pose>
+        <geometry><mesh><uri>model://sentry_solidworks_preview/meshes/armor-3.STL</uri></mesh></geometry>
+        <material><diffuse>0.79 0.82 0.93 1</diffuse></material>
+      </visual>
+      <visual name="armor_right">
+        <pose>0 -0.23985 0.097281 0 -0.2618 -1.5708</pose>
+        <geometry><mesh><uri>model://sentry_solidworks_preview/meshes/armor-4.STL</uri></mesh></geometry>
+        <material><diffuse>0.79 0.82 0.93 1</diffuse></material>
+      </visual>
+      <visual name="yaw">
+        <pose>0 0 0.1595 0 0 0</pose>
+        <geometry><mesh><uri>model://sentry_solidworks_preview/meshes/yaw.STL</uri></mesh></geometry>
+        <material><diffuse>0.90 0.92 0.93 1</diffuse></material>
+      </visual>
+      <visual name="wheel_1">
+        <pose>0.16209 0.16209 -0.0037427 0 0 0.7854</pose>
+        <geometry><mesh><uri>model://sentry_solidworks_preview/meshes/wheel-1.STL</uri></mesh></geometry>
+        <material><diffuse>0.30 0.30 0.32 1</diffuse></material>
+      </visual>
+      <visual name="wheel_2">
+        <pose>-0.16209 0.16209 -0.0037427 0 0 2.3562</pose>
+        <geometry><mesh><uri>model://sentry_solidworks_preview/meshes/wheel-2.STL</uri></mesh></geometry>
+        <material><diffuse>0.30 0.30 0.32 1</diffuse></material>
+      </visual>
+      <visual name="wheel_3">
+        <pose>-0.16209 -0.16209 -0.0037427 0 0 -2.3562</pose>
+        <geometry><mesh><uri>model://sentry_solidworks_preview/meshes/wheel-3.STL</uri></mesh></geometry>
+        <material><diffuse>0.30 0.30 0.32 1</diffuse></material>
+      </visual>
+      <visual name="wheel_4">
+        <pose>0.16209 -0.16209 -0.0037427 0 0 -0.7854</pose>
+        <geometry><mesh><uri>model://sentry_solidworks_preview/meshes/wheel-4.STL</uri></mesh></geometry>
+        <material><diffuse>0.30 0.30 0.32 1</diffuse></material>
+      </visual>
+    </link>
+  </model>
+</sdf>

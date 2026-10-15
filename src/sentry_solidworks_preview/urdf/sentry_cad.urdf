@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="sentry_solidworks_preview">
+  <link name="base">
+    <inertial>
+      <origin xyz="0.0010047 0.003979 0.059702" rpy="0 0 0" />
+      <mass value="7.5396" />
+      <inertia ixx="0.011343" ixy="4.8356E-06" ixz="6.2947E-06" iyy="0.016275" iyz="-3.5443E-06" izz="0.023445" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_solidworks_preview/meshes/base.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+  </link>
+  <link name="yaw">
+    <inertial>
+      <origin xyz="0.0073031 -0.030687 0.12548" rpy="0 0 0" />
+      <mass value="2.4882" />
+      <inertia ixx="0.0031992" ixy="-4.0159E-06" ixz="-1.5444E-05" iyy="0.0018446" iyz="-5.4833E-05" izz="0.0023987" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_solidworks_preview/meshes/yaw.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="yaw" type="revolute">
+    <origin xyz="0 0 0.1595" rpy="0 0 0" />
+    <parent link="base" />
+    <child link="yaw" />
+    <axis xyz="0 0 -1" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+  <link name="armor-1">
+    <inertial>
+      <origin xyz="-0.0083693 8.4227E-09 0.00081288" rpy="0 0 0" />
+      <mass value="0.096294" />
+      <inertia ixx="0.00027639" ixy="5.4094E-12" ixz="-2.6918E-07" iyy="0.00013222" iyz="4.6908E-10" izz="0.00014509" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_solidworks_preview/meshes/armor-1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="armor-1" type="fixed">
+    <origin xyz="0.23985 0 0.063281" rpy="0 -0.2618 0" />
+    <parent link="base" />
+    <child link="armor-1" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="armor-2">
+    <inertial>
+      <origin xyz="-0.00836925080902123 6.89301807833633E-09 0.000812881822971637" rpy="0 0 0" />
+      <mass value="0.0962935697647964" />
+      <inertia ixx="0.000276386812497067" ixy="5.08518002775209E-12" ixz="-2.69180564566259E-07" iyy="0.000132220586535066" iyz="4.74150910029258E-10" izz="0.000145085858261613" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_solidworks_preview/meshes/armor-2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="armor-2" type="fixed">
+    <origin xyz="0 0.23985 0.097281" rpy="0 -0.2618 1.5708" />
+    <parent link="base" />
+    <child link="armor-2" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="armor-3">
+    <inertial>
+      <origin xyz="-0.00836925081228684 6.93128750978365E-09 0.000812881840901607" rpy="0 0 0" />
+      <mass value="0.0962935698388428" />
+      <inertia ixx="0.000276386812728384" ixy="5.07055491146337E-12" ixz="-2.69180569171151E-07" iyy="0.000132220586570095" iyz="4.74063498642607E-10" izz="0.000145085858456597" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_solidworks_preview/meshes/armor-3.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="armor-3" type="fixed">
+    <origin xyz="-0.23985 0 0.063281" rpy="0 -0.2618 3.1416" />
+    <parent link="base" />
+    <child link="armor-3" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="armor-4">
+    <inertial>
+      <origin xyz="-0.00836925131775479 8.42269349814076E-09 0.000812883512834726" rpy="0 0 0" />
+      <mass value="0.0962935746437901" />
+      <inertia ixx="0.000276386822654386" ixy="5.40938965716771E-12" ixz="-2.69180231474907E-07" iyy="0.000132220591944976" iyz="4.69081143628311E-10" izz="0.000145085863011321" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_solidworks_preview/meshes/armor-4.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="armor-4" type="fixed">
+    <origin xyz="0 -0.23985 0.097281" rpy="0 -0.2618 -1.5708" />
+    <parent link="base" />
+    <child link="armor-4" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="wheel-1">
+    <inertial>
+      <origin xyz="-8.3267E-17 1.2255E-06 -2.2245E-06" rpy="0 0 0" />
+      <mass value="0.27879" />
+      <inertia ixx="0.00033504" ixy="0" ixz="-5.0221E-21" iyy="0.00017157" iyz="3.516E-09" izz="0.00017157" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_solidworks_preview/meshes/wheel-1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="wheel-1" type="revolute">
+    <origin xyz="0.16209 0.16209 -0.0037427" rpy="0 0 0.7854" />
+    <parent link="base" />
+    <child link="wheel-1" />
+    <axis xyz="-1 0 0" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+  <link name="wheel-2">
+    <inertial>
+      <origin xyz="-5.55111512312578E-17 1.22546543876445E-06 -2.22448121725257E-06" rpy="0 0 0" />
+      <mass value="0.278789920208083" />
+      <inertia ixx="0.000335035371207934" ixy="0" ixz="-4.20045306889438E-21" iyy="0.00017157333532205" iyz="3.51600462406793E-09" izz="0.00017156918018934" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_solidworks_preview/meshes/wheel-2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="wheel-2" type="revolute">
+    <origin xyz="-0.16209 0.16209 -0.0037427" rpy="0 0 2.3562" />
+    <parent link="base" />
+    <child link="wheel-2" />
+    <axis xyz="-1 0 0" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+  <link name="wheel-3">
+    <inertial>
+      <origin xyz="5.55111512312578E-17 1.22546543877833E-06 -2.22448121725951E-06" rpy="0 0 0" />
+      <mass value="0.278789920208083" />
+      <inertia ixx="0.000335035371207934" ixy="-6.7762635780344E-21" ixz="-6.37003941025242E-21" iyy="0.00017157333532205" iyz="3.51600462407923E-09" izz="0.00017156918018934" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_solidworks_preview/meshes/wheel-3.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="wheel-3" type="revolute">
+    <origin xyz="-0.16209 -0.16209 -0.0037427" rpy="0 0 -2.3562" />
+    <parent link="base" />
+    <child link="wheel-3" />
+    <axis xyz="-1 0 0" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+  <link name="wheel-4">
+    <inertial>
+      <origin xyz="5.55111512312578E-17 1.22546543865343E-06 -2.2244812172582E-06" rpy="0 0 0" />
+      <mass value="0.278789920208083" />
+      <inertia ixx="0.000335035371207934" ixy="-1.35525271560688E-20" ixz="-3.57442660482779E-21" iyy="0.00017157333532205" iyz="3.51600462407832E-09" izz="0.00017156918018934" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sentry_solidworks_preview/meshes/wheel-4.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="wheel-4" type="revolute">
+    <origin xyz="0.16209 -0.16209 -0.0037427" rpy="0 0 -0.7854" />
+    <parent link="base" />
+    <child link="wheel-4" />
+    <axis xyz="-1 0 0" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+</robot>
