@@ -1,25 +1,25 @@
 # Sentry Navigation
 
-Robomaster 哨兵机器人导航开发工作空间，目标平台为 Ubuntu 22.04 + ROS 2 Humble。
+A RoboMaster sentry navigation workspace for Ubuntu 22.04 and ROS 2 Humble.
 
-## 当前内容
+## Packages
 
-- `src/livox_ros_driver2`: Livox MID360 ROS 2 驱动
-- `src/rm2026_field`: 可配置的 RMUL 2026 3v3 Gazebo 场地
-- `src/rm2027_field`: 官方 STEP 转换的 RMUL 2027 3v3 Gazebo 场地
-- `src/sentry_description`: 哨兵机器人模型；默认使用 SolidWorks CAD 外观
-- `src/sentry_navigation`: 建图、定位、Nav2 自主导航和 RViz 配置
-- `src/sentry_solidworks_preview`: SolidWorks 模型的独立静态预览
-- `src/sentry_urdf_preview`: 早期 URDF 模型的独立静态预览
-- `env.sh`: ROS 2 Humble、工作空间和用户目录 SDK2 环境
+- `src/livox_ros_driver2`: Livox MID-360 ROS 2 driver
+- `src/rm2026_field`: Configurable RMUL 2026 3v3 Gazebo field
+- `src/rm2027_field`: RMUL 2027 3v3 Gazebo field converted from the official STEP model
+- `src/sentry_description`: Sentry robot model, using the SolidWorks CAD appearance by default
+- `src/sentry_navigation`: Mapping, localization, Nav2 navigation, and RViz configuration
+- `src/sentry_solidworks_preview`: Standalone static preview of the SolidWorks model
+- `src/sentry_urdf_preview`: Standalone static preview of the earlier URDF model
+- `env.sh`: ROS 2 Humble, workspace, and user-local SDK2 environment setup
 
-## 环境
+## Environment Setup
 
 ```bash
 source ~/Desktop/workspace/sentry-navigation/env.sh
 ```
 
-构建：
+Build the workspace:
 
 ```bash
 cd ~/Desktop/workspace/sentry-navigation
@@ -27,69 +27,63 @@ source /opt/ros/humble/setup.bash
 colcon build --symlink-install
 ```
 
-## Gazebo 3v3 地图
+## Gazebo 3v3 Fields
 
 ### RMUL 2026
 
-<img src="src/rm2026_field/assets/rmul_2026_3v3_venue.png" alt="RMUL 2026 3v3 Gazebo 地图" width="60%">
+<img src="src/rm2026_field/assets/rmul_2026_3v3_venue.png" alt="RMUL 2026 3v3 Gazebo field" width="60%">
 
 ```bash
 source ~/Desktop/workspace/sentry-navigation/env.sh
 ros2 launch rm2026_field rmul_2026_3v3.launch.py
 ```
 
-场地尺寸和生成方式见 [2026 地图说明](src/rm2026_field/README.md)。
+See the [2026 field guide](src/rm2026_field/README.md) for dimensions and generation instructions.
 
 ### RMUL 2027
 
-<img src="src/rm2027_field/assets/rmul_2027_3v3_gazebo.png" alt="RMUL 2027 官方 3v3 Gazebo 地图" width="60%">
+<img src="src/rm2027_field/assets/rmul_2027_3v3_gazebo.png" alt="Official RMUL 2027 3v3 Gazebo field" width="60%">
 
-哨兵在 2027 场地中的仿真效果：
+Sentry robot in the 2027 field:
 
-<img src="src/rm2027_field/assets/sentry_in_rmul_2027_3v3.png" alt="哨兵机器人位于 RMUL 2027 场地中央控制区" width="85%">
+<img src="src/rm2027_field/assets/sentry_in_rmul_2027_3v3.png" alt="Sentry robot in the central control area of the RMUL 2027 field" width="85%">
 
 ```bash
 source ~/Desktop/workspace/sentry-navigation/env.sh
 ros2 launch rm2027_field rmul_2027_3v3.launch.py
 ```
 
-默认加载官方 `RMUL2027_3V3_V1.0.0.stp` 转换的场地，保留 STEP 的几何和表面颜色。
-模型来源、尺寸及旧版近似场地见 [2027 地图说明](src/rm2027_field/README.md)。
-如需同时加载机器人，先关闭上面的 Gazebo，再运行：
+The default field is converted from the official `RMUL2027_3V3_V1.0.0.stp`, preserving its geometry and surface colors. See the [2027 field guide](src/rm2027_field/README.md) for the source model, dimensions, and import instructions.
+
+To load the robot into the 2027 field, close the field-only Gazebo instance first, then run:
 
 ```bash
 ros2 launch sentry_description gazebo.launch.py
 ```
 
-两个 Gazebo 场地一次只启动一个。现有 `rmul_3v3_v2` 导航地图对应 2026 场地。
-2027 场地导航使用 `maps/rmul_2027_3v3_nav.yaml`；它在实测雷达地图上补入
-官方 STEP 中的高地、隧道桥板等实体障碍，避免平面运动仿真穿模。重新建图后需运行
-`python3 src/sentry_navigation/scripts/prepare_2027_nav_map.py` 更新导航地图。
+Run only one Gazebo world at a time. The existing `rmul_3v3_v2` navigation map is for the 2026 field. For 2027 navigation, use `maps/rmul_2027_3v3_nav.yaml`. This map combines the lidar map with raised obstacles from the official STEP model, preventing the planar-motion simulation from routing through highlands and tunnel plates. After creating a new lidar map, regenerate the navigation map with:
 
-使用完整机器人模型与 Nav2 寻路时，按照
-[`src/sentry_navigation/README.md`](src/sentry_navigation/README.md) 依次启动
-Gazebo、定位和 RViz。2026 仿真导航使用 `maps/rmul_3v3_v2.yaml`。
+```bash
+python3 src/sentry_navigation/scripts/prepare_2027_nav_map.py
+```
 
-## 实机 MID-360 首次联调
+For the full robot and Nav2 navigation workflow, follow the instructions in [`src/sentry_navigation/README.md`](src/sentry_navigation/README.md). The 2026 simulation uses `maps/rmul_3v3_v2.yaml`.
 
-开发电脑直连雷达的有线网卡为 `enx207bd294c80c`。以下示例假设雷达仍在
-`192.168.1.0/24` 网段，且 `192.168.1.5` 未被占用。本次直连发现雷达地址为
-`192.168.1.158`，已写入仓库的驱动配置；若设备 IP
-被重新设置，应重新核对并更新该地址。
+## First MID-360 Hardware Test
+
+The development PC connects directly to the lidar through the `enx207bd294c80c` Ethernet interface. These examples assume the lidar remains on the `192.168.1.0/24` subnet and `192.168.1.5` is unused. The lidar was discovered at `192.168.1.158` during the last direct connection; this address is saved in the driver configuration. If the lidar IP changes, verify and update it.
 
 ```bash
 sudo nmcli connection modify '有线连接 1' \
   ipv4.method manual ipv4.addresses 192.168.1.5/24 ipv4.never-default yes
 sudo nmcli connection up '有线连接 1' ifname enx207bd294c80c
 ip -4 addr show dev enx207bd294c80c
-printf '请输入雷达实际 IP: '
+printf 'Enter the actual lidar IP: '
 read -r LIDAR_IP
 ping -I enx207bd294c80c -c 3 "$LIDAR_IP"
 ```
 
-将 `src/livox_ros_driver2/config/MID360_config.json` 中 `lidar_configs[0].ip`
-改成雷达 IP，并确认 `host_net_info` 的四个 `*_data_ip` / `push_msg_ip` 都是
-`192.168.1.5`。雷达端和主机端的端口保持原值。然后在新终端启动驱动：
+Set `lidar_configs[0].ip` in `src/livox_ros_driver2/config/MID360_config.json` to the lidar IP. Make sure all four `*_data_ip` and `push_msg_ip` fields in `host_net_info` use `192.168.1.5`. Keep the existing port values. Then start the driver in a new terminal:
 
 ```bash
 source ~/Desktop/workspace/sentry-navigation/env.sh
@@ -97,12 +91,9 @@ ros2 launch sentry_navigation mid360.launch.py \
   config:=$SENTRY_WS_DIR/src/livox_ros_driver2/config/MID360_config.json
 ```
 
-这会自动打开 RViz，展示实时点云。若需要只运行驱动、不启动图形界面，追加
-`rviz:=false`。在 RViz 中拖动左键旋转、滚轮缩放、按住中键平移；左侧
-`PointCloud2` 是雷达数据，Fixed Frame 为 `livox_frame`。
+RViz starts automatically and displays the live point cloud. Add `rviz:=false` to run only the driver. In RViz, drag with the left mouse button to rotate, use the wheel to zoom, and hold the middle button to pan. The `PointCloud2` display shows lidar data; set the Fixed Frame to `livox_frame`.
 
-驱动将 `PointCloud2` 发布到 `/mid360/points`，将 IMU 发布到 `/mid360/imu`，
-坐标系为 `livox_frame`。先单独确认数据，再接入机器人：
+The driver publishes `PointCloud2` on `/mid360/points` and IMU data on `/mid360/imu`, in the `livox_frame` coordinate frame. Verify the data before integrating the lidar with the robot:
 
 ```bash
 ros2 topic hz /mid360/points
@@ -110,10 +101,7 @@ ros2 topic echo /mid360/points --once --field header
 ros2 topic hz /mid360/imu
 ```
 
-RViz 的 Fixed Frame 可先设为 `livox_frame`，订阅 `/mid360/points` 检查原始点云。
-实机建图还需要机器人发布 `odom -> base_link` 里程计 TF 和正确的
-`base_link -> ... -> livox_frame` 安装/云台 TF；云台运动时必须发布实际编码器角度。
-这些就绪后，另开终端运行：
+In RViz, set the Fixed Frame to `livox_frame` and subscribe to `/mid360/points` to inspect the raw point cloud. Hardware mapping also requires the robot to publish odometry TF from `odom` to `base_link` and the correct sensor and gimbal TF from `base_link` through to `livox_frame`. Publish the actual encoder angle while the gimbal moves. Once these are ready, run this in another terminal:
 
 ```bash
 source ~/Desktop/workspace/sentry-navigation/env.sh
@@ -123,31 +111,25 @@ ros2 launch sentry_navigation mapping.launch.py \
 ros2 topic hz /scan
 ```
 
-`mapping.launch.py` 无参数运行时仍使用 Gazebo 配置。实机地图不能直接使用仿真地图；
-在点云、TF 和里程计校准前不要启用自主导航。
+Without arguments, `mapping.launch.py` uses the Gazebo configuration. Do not use a simulation map on the real field. Wait until the point cloud, TF, and odometry are calibrated before enabling autonomous navigation.
 
-## 从开发电脑部署到机载 PC
+## Deploy from the Development PC to the Onboard PC
 
-两台机器分别安装 Ubuntu 22.04、ROS 2 Humble、Livox SDK2 和本工作空间依赖，
-在机载 PC 上拉取同一份源码并执行 `colcon build --symlink-install`。`env.sh` 会按
-自身位置加载工作空间，所以机载 PC 的用户名和源码目录可以不同；SDK2 如安装在
-用户目录，则保持 `$HOME/third_party/livox-sdk2-install` 路径。雷达只连接一台
-主机时，两台主机可分别使用 `192.168.1.5/24`，但各自的网卡名可能不同。
-在机载 PC 上也要核对雷达 IP，配置有线网卡，并用同一启动命令验证
-`/mid360/points` 与 `/mid360/imu`。
+Install Ubuntu 22.04, ROS 2 Humble, Livox SDK2, and the workspace dependencies on both machines. Clone the same source on the onboard PC and run `colcon build --symlink-install`. `env.sh` locates the workspace relative to itself, so the onboard PC can use a different username and source directory. If SDK2 is installed under the user directory, keep it at `$HOME/third_party/livox-sdk2-install`. When the lidar connects to one host only, both hosts can use `192.168.1.5/24`, though their interface names may differ.
 
-先在开发电脑录制实机数据来调试算法，机载 PC 上再做实时验证：
+On the onboard PC, verify the lidar IP and Ethernet configuration, then use the same launch command to check `/mid360/points` and `/mid360/imu`.
+
+Record real hardware data on the development PC for algorithm debugging before running real-time tests on the onboard PC:
 
 ```bash
 ros2 bag record /mid360/points /mid360/imu /tf /tf_static /odom
 ```
 
-2026 场地规则变化时，编辑 `src/rm2026_field/config/field_config.json`，然后重新生成：
+To update the 2026 field, edit `src/rm2026_field/config/field_config.json`, regenerate the world, and rebuild the package:
 
 ```bash
 python3 src/rm2026_field/scripts/generate_field.py
 colcon build --symlink-install --packages-select rm2026_field
 ```
 
-2027 官方场地由 STEP 导入；重新导入的方法见
-[2027 地图说明](src/rm2027_field/README.md)。
+The 2027 field is imported from the official STEP model. See the [2027 field guide](src/rm2027_field/README.md) for instructions.
