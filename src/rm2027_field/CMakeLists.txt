@@ -3,7 +3,7 @@ project(rm2027_field)
 
 find_package(ament_cmake REQUIRED)
 
-install(DIRECTORY config launch models worlds DESTINATION share/${PROJECT_NAME})
-install(PROGRAMS scripts/generate_field.py DESTINATION lib/${PROJECT_NAME})
+install(DIRECTORY assets launch models sources worlds DESTINATION share/${PROJECT_NAME})
+install(PROGRAMS scripts/import_official_step.py DESTINATION lib/${PROJECT_NAME})
 
 ament_package()

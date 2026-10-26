@@ -4,9 +4,9 @@ import os
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import EnvironmentVariable, LaunchConfiguration
 
 
 def generate_launch_description():
@@ -28,5 +28,11 @@ def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument("gui", default_value="true"),
         DeclareLaunchArgument("verbose", default_value="false"),
+        SetEnvironmentVariable(
+            name="GAZEBO_MODEL_PATH",
+            value=[os.path.join(field_share, "models"), ":",
+                   EnvironmentVariable("GAZEBO_MODEL_PATH", default_value="")],
+        ),
+        SetEnvironmentVariable(name="GAZEBO_MODEL_DATABASE_URI", value=""),
         gazebo,
     ])

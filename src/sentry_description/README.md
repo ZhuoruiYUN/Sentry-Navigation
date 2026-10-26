@@ -16,7 +16,7 @@ source ~/Desktop/workspace/sentry-navigation/env.sh
 ros2 launch sentry_description gazebo.launch.py
 ```
 
-This launch starts the RMUL 3v3 field and spawns the robot. The simulation uses planar kinematic motion for navigation development; it is not intended to validate chassis dynamics or motor control.
+This launch starts the official RMUL 2027 3v3 field and spawns the robot. The simulation uses planar kinematic motion for navigation development; it is not intended to validate chassis dynamics or motor control.
 
 The default visual model is the complete SolidWorks export from `sentry.rar`.
 It retains the simulator's `base_link`, gimbal controller, MID360 TF and sensor,
@@ -24,10 +24,11 @@ and `/cmd_vel` safety guard. To view the earlier model, add `solidworks:=false`
 to the launch command. The SolidWorks wheel joints are currently free-spinning
 visual links; the planar motion plugin moves the robot body.
 
-For the separate RMUL 2027 3v3 field with workbenches and tunnel passages,
-start Gazebo with `field_year:=2027`. The default is the 2026 field. Build
-`rm2027_field` before selecting the new field. The existing 2026 occupancy map
-does not match the new field; create a fresh map before using Nav2 there.
+To load the 2026 field instead, add `field_year:=2026` to the launch command.
+Build `rm2027_field` before starting the default field. The 2026 occupancy
+map does not match the 2027 field. For 2027 Nav2, use
+`maps/rmul_2027_3v3_nav.yaml`, which marks the official field's raised
+structures as obstacles for the kinematic robot.
 
 To drive the robot through the existing `/cmd_vel` safety guard, start the
 mapping launch in a second terminal. It converts `/mid360/points` to `/scan`;

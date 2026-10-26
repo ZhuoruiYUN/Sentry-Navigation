@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.7">
+  <model name="rmul_2027_3v3_official">
+    <static>true</static>
+    <link name="field">
+      <collision name="official_geometry">
+        <geometry>
+          <mesh>
+            <uri>model://rmul_2027_3v3_official/meshes/collision.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="color_0000ff">
+        <geometry>
+          <mesh>
+            <uri>model://rmul_2027_3v3_official/meshes/color_0000ff.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 1 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+        </material>
+        <cast_shadows>true</cast_shadows>
+      </visual>
+      <visual name="color_00ff00">
+        <geometry>
+          <mesh>
+            <uri>model://rmul_2027_3v3_official/meshes/color_00ff00.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 1 0 1</ambient>
+          <diffuse>0 1 0 1</diffuse>
+        </material>
+        <cast_shadows>true</cast_shadows>
+      </visual>
+      <visual name="color_080808">
+        <geometry>
+          <mesh>
+            <uri>model://rmul_2027_3v3_official/meshes/color_080808.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.0313725 0.0313725 0.0313725 1</ambient>
+          <diffuse>0.0313725 0.0313725 0.0313725 1</diffuse>
+        </material>
+        <cast_shadows>true</cast_shadows>
+      </visual>
+      <visual name="color_5c98c8">
+        <geometry>
+          <mesh>
+            <uri>model://rmul_2027_3v3_official/meshes/color_5c98c8.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.360784 0.596078 0.784314 1</ambient>
+          <diffuse>0.360784 0.596078 0.784314 1</diffuse>
+        </material>
+        <cast_shadows>true</cast_shadows>
+      </visual>
+      <visual name="color_5f5f5f">
+        <geometry>
+          <mesh>
+            <uri>model://rmul_2027_3v3_official/meshes/color_5f5f5f.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.372549 0.372549 0.372549 1</ambient>
+          <diffuse>0.372549 0.372549 0.372549 1</diffuse>
+        </material>
+        <cast_shadows>true</cast_shadows>
+      </visual>
+      <visual name="color_787d82">
+        <geometry>
+          <mesh>
+            <uri>model://rmul_2027_3v3_official/meshes/color_787d82.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.470588 0.490196 0.509804 1</ambient>
+          <diffuse>0.470588 0.490196 0.509804 1</diffuse>
+        </material>
+        <cast_shadows>true</cast_shadows>
+      </visual>
+      <visual name="color_bee2ff">
+        <geometry>
+          <mesh>
+            <uri>model://rmul_2027_3v3_official/meshes/color_bee2ff.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.745098 0.886275 1 1</ambient>
+          <diffuse>0.745098 0.886275 1 1</diffuse>
+        </material>
+        <cast_shadows>true</cast_shadows>
+      </visual>
+      <visual name="color_ff0000">
+        <geometry>
+          <mesh>
+            <uri>model://rmul_2027_3v3_official/meshes/color_ff0000.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>1 0 0 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+        </material>
+        <cast_shadows>true</cast_shadows>
+      </visual>
+      <visual name="color_ffffff">
+        <geometry>
+          <mesh>
+            <uri>model://rmul_2027_3v3_official/meshes/color_ffffff.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+        </material>
+        <cast_shadows>true</cast_shadows>
+      </visual>
+    </link>
+  </model>
+</sdf>

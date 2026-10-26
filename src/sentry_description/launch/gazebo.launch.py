@@ -23,7 +23,7 @@ def generate_launch_description():
     }
     return LaunchDescription([
         DeclareLaunchArgument("gui", default_value="true"),
-        DeclareLaunchArgument("field_year", default_value="2026", choices=["2026", "2027"]),
+        DeclareLaunchArgument("field_year", default_value="2027", choices=["2026", "2027"]),
         DeclareLaunchArgument("solidworks", default_value="true"),
         DeclareLaunchArgument("x", default_value="-4.8"),
         DeclareLaunchArgument("y", default_value="2.8"),

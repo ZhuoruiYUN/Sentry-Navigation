@@ -6,7 +6,7 @@ Robomaster 哨兵机器人导航开发工作空间，目标平台为 Ubuntu 22.0
 
 - `src/livox_ros_driver2`: Livox MID360 ROS 2 驱动
 - `src/rm2026_field`: 可配置的 RMUL 2026 3v3 Gazebo 场地
-- `src/rm2027_field`: 根据 2027 规则新建的 3v3 Gazebo 场地（隧道与工作台）
+- `src/rm2027_field`: 官方 STEP 转换的 RMUL 2027 3v3 Gazebo 场地
 - `src/sentry_description`: 哨兵机器人模型；默认使用 SolidWorks CAD 外观
 - `src/sentry_navigation`: 建图、定位、Nav2 自主导航和 RViz 配置
 - `src/sentry_solidworks_preview`: SolidWorks 模型的独立静态预览
@@ -42,22 +42,29 @@ ros2 launch rm2026_field rmul_2026_3v3.launch.py
 
 ### RMUL 2027
 
-<img src="src/rm2027_field/assets/rmul_2027_3v3_gazebo.png" alt="RMUL 2027 3v3 Gazebo 地图，包含工作台和隧道" width="60%">
+<img src="src/rm2027_field/assets/rmul_2027_3v3_gazebo.png" alt="RMUL 2027 官方 3v3 Gazebo 地图" width="60%">
+
+哨兵在 2027 场地中的仿真效果：
+
+<img src="src/rm2027_field/assets/sentry_in_rmul_2027_3v3.png" alt="哨兵机器人位于 RMUL 2027 场地中央控制区" width="85%">
 
 ```bash
 source ~/Desktop/workspace/sentry-navigation/env.sh
 ros2 launch rm2027_field rmul_2027_3v3.launch.py
 ```
 
-2027 场地增加工作台、隧道桥板和靠墙实体墙；隧道增益区位于桥板靠场地中心的一侧。
-尺寸和修改方法见 [2027 地图说明](src/rm2027_field/README.md)。如需同时加载机器人：
+默认加载官方 `RMUL2027_3V3_V1.0.0.stp` 转换的场地，保留 STEP 的几何和表面颜色。
+模型来源、尺寸及旧版近似场地见 [2027 地图说明](src/rm2027_field/README.md)。
+如需同时加载机器人，先关闭上面的 Gazebo，再运行：
 
 ```bash
-ros2 launch sentry_description gazebo.launch.py field_year:=2027
+ros2 launch sentry_description gazebo.launch.py
 ```
 
-两个 Gazebo 场地一次只启动一个。现有 `rmul_3v3_v2` 导航地图对应 2026 场地，
-在 2027 场地使用 Nav2 定位前需要重新建图。
+两个 Gazebo 场地一次只启动一个。现有 `rmul_3v3_v2` 导航地图对应 2026 场地。
+2027 场地导航使用 `maps/rmul_2027_3v3_nav.yaml`；它在实测雷达地图上补入
+官方 STEP 中的高地、隧道桥板等实体障碍，避免平面运动仿真穿模。重新建图后需运行
+`python3 src/sentry_navigation/scripts/prepare_2027_nav_map.py` 更新导航地图。
 
 使用完整机器人模型与 Nav2 寻路时，按照
 [`src/sentry_navigation/README.md`](src/sentry_navigation/README.md) 依次启动
@@ -135,12 +142,12 @@ ros2 topic hz /scan
 ros2 bag record /mid360/points /mid360/imu /tf /tf_static /odom
 ```
 
-场地规则变化时，编辑对应年份的 `config/field_config.json`，运行生成脚本后重新编译：
+2026 场地规则变化时，编辑 `src/rm2026_field/config/field_config.json`，然后重新生成：
 
 ```bash
 python3 src/rm2026_field/scripts/generate_field.py
 colcon build --symlink-install --packages-select rm2026_field
-
-python3 src/rm2027_field/scripts/generate_field.py
-colcon build --symlink-install --packages-select rm2027_field
 ```
+
+2027 官方场地由 STEP 导入；重新导入的方法见
+[2027 地图说明](src/rm2027_field/README.md)。
